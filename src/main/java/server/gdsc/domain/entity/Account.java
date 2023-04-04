@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import server.gdsc.controller.dto.AccountResponseDTO;
 
 @Getter
 @NoArgsConstructor
@@ -32,5 +33,18 @@ public class Account {
         this.email = email;
         this.password = password;
         this.name = name;
+    }
+
+    public AccountResponseDTO fromEntity(String message) {
+        return AccountResponseDTO.builder()
+                .message(message)
+                .accountId(accountId)
+                .email(email)
+                .name(name)
+                .build();
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

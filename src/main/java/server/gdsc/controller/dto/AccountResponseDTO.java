@@ -5,17 +5,20 @@ import lombok.Getter;
 import server.gdsc.domain.entity.Account;
 
 @Getter
+@Builder
 public class AccountResponseDTO {
     private String message;
     private Long accountId;
     private String email;
     private String name;
 
-    @Builder
-    public AccountResponseDTO(String message, Account account) {
-        this.message = message;
-        this.accountId = account.getAccountId();
-        this.email = account.getEmail();
-        this.name = account.getName();
+
+    public AccountResponseDTO fromEntity(String message, Account account) {
+        return AccountResponseDTO.builder()
+                .message(message)
+                .accountId(account.getAccountId())
+                .email(account.getEmail())
+                .name(account.getName())
+                .build();
     }
 }
