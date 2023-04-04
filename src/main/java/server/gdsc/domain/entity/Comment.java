@@ -12,7 +12,7 @@ import lombok.NonNull;
 public class Comment extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String commentId;
+    private Long commentId;
 
     @NonNull
     @Column()
@@ -29,7 +29,7 @@ public class Comment extends BaseTimeEntity{
     private Post post;
 
     @Builder
-    public Comment(String commentId, @NonNull String contents, @NonNull Account account, @NonNull Post post) {
+    public Comment(Long commentId, @NonNull String contents, @NonNull Account account, @NonNull Post post) {
         this.commentId = commentId;
         this.contents = contents;
         this.account = account;
