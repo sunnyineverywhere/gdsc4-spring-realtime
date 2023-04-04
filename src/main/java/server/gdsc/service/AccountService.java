@@ -2,6 +2,7 @@ package server.gdsc.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import server.gdsc.controller.dto.AccountRemoveRequestDTO;
 import server.gdsc.controller.dto.PasswordRequestDTO;
 import server.gdsc.controller.dto.SignUpRequestDTO;
 import server.gdsc.domain.entity.Account;
@@ -33,5 +34,11 @@ public class AccountService {
         account.setPassword(requestDTO.getPassword());
         account = accountRepository.save(account);
         return account;
+    }
+
+    public void removeAccount(AccountRemoveRequestDTO requestDTO) {
+        Account account = accountRepository.findById(requestDTO.getAccountId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 계정입니다."));
+        accountRepository.delete(account);
     }
 }
