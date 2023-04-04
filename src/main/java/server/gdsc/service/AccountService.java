@@ -13,6 +13,8 @@ public class AccountService {
     private final AccountRepository accountRepository;
 
     public Account registerAccount(SignUpRequestDTO requestDTO) {
+        Account account = accountRepository.findByEmail(requestDTO.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("이미 존재하는 계정입니다!"));
         return accountRepository.save(
                 Account.builder()
                         .email(requestDTO.getEmail())
